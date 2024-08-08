@@ -43,6 +43,15 @@ router.post('/holidayscreate', async (req, res) => {
   }
 });
 
+router.get('/holidays', async (req, res) => {
+  try {
+    const holidays = await Holiday.find();
+    res.json(holidays);
+  } catch (error) {
+    console.error('Error fetching companies:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
 // List holidays by company
 router.post('/holidayslist', async (req, res) => {
   try {
